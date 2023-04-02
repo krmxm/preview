@@ -1,42 +1,46 @@
-const films = [
-    {
-        name: 'Titanic',
-        rating: 9
-    },
-    {
-        name: 'Die hard 5',
-        rating: 5
-    },
-    {
-        name: 'Matrix',
-        rating: 8
-    },
-    {
-        name: 'Some bad film',
-        rating: 4
-    }
-];
+'use stric';
 
-function showGoodFilms(arr) {
-    return arr.filter(film => film.rating >= 8);
-}
+// const films = [
+//     {
+//         name: 'Titanic',
+//         rating: 9
+//     },
+//     {
+//         name: 'Die hard 5',
+//         rating: 5
+//     },
+//     {
+//         name: 'Matrix',
+//         rating: 8
+//     },
+//     {
+//         name: 'Some bad film',
+//         rating: 4
+//     }
+// ];
 
-function showListOfFilms(arr) {
-    return arr.reduce((acc, current) => `${typeof(acc) === 'object' ? acc.name : acc}, ${current.name}`);
-}
+// function showGoodFilms(arr) {
+//     return arr.filter(film => film.rating >= 8);
+// }
 
-function setFilmsIds(arr) {
-    return arr.map((film, i) => {
-        film.id = i;
-        return film;
-    });
-}
+// function showListOfFilms(arr) {
+//     return arr.reduce((acc, current) => `${typeof(acc) === 'object' ? acc.name : acc}, ${current.name}`);
+// }
 
-const tranformedArray = setFilmsIds(films);
+// function setFilmsIds(arr) {
+//     return arr.map((film, i) => {
+//         film.id = i;
+//         return film;
+//     });
+// }
 
-function checkFilms(arr) {
-    return arr.every(items => items.id || items.id === 0 ? true : false);
-}
+// const tranformedArray = setFilmsIds(films);
+
+// function checkFilms(arr) {
+//     return arr.every(items => items.id || items.id === 0 ? true : false);
+// }
+
+
 
 const funds = [
     {amount: -1400},
@@ -48,13 +52,11 @@ const funds = [
 ];
 
 const getPositiveIncomeAmount = (data) => {
-    return data.filter((number) => {
-        return number.amount > 0;
-    });
+    return data.filter(number => number.amount > 0).reduce((acc, current) => acc + current.amount, 0);
 };
-
-console.log(getPositiveIncomeAmount(funds));
-
+    
 const getTotalIncomeAmount = (data) => {
-
+    return data.some(num => num.amount > 0) ? data.reduce((acc, current) => acc + current.amount, 0) : getPositiveIncomeAmount(data);
 };
+
+console.log(getTotalIncomeAmount(funds));
